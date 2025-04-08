@@ -1,17 +1,36 @@
 # Node.js
 node_modules/
 dist/
+
+# Env files
 .env
 .env.*
+!.env.example
 
 # Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+logs/
 
 # TypeScript
 *.tsbuildinfo
 
-# Sessions
+# Sessions / Auth
 *.session*
+src/session/
+src/session/*
+
+# Output
+.out/
+build/
+coverage/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
