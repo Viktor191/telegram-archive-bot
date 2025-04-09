@@ -36,3 +36,7 @@ Thumbs.db
 .vscode/
 
 test.txt
+
+/logs/*
+# заглушка для gitignore
+!/logs/.gitkeep

@@ -1,7 +1,9 @@
 import { Api, TelegramClient } from "telegram";
+import { NewMessage } from "telegram/events";
 import { NewMessageEvent } from "telegram/events";
-import {getFormattedDate} from "../utils/date";
-import {getChatInfo} from "../utils/chat";
+import { getFormattedDate } from "../utils/date";
+import { getChatInfo } from "../utils/chat";
+import { saveMessageToFile } from "./saveMessageToFile";
 
 export const handleNewMessage = async (
     client: TelegramClient,
@@ -20,13 +22,16 @@ export const handleNewMessage = async (
                 : message.fromId?.toString() ??
                 (message.out ? me.id.toString() : null);
 
-        console.log("📨 Новое сообщение:", {
+        const normalized = {
             messageId: message.id,
             text: message.message,
             fromId,
             chatId,
             chatType,
             date: formattedDate,
-        });
-    });
+        };
+
+        console.log("📨 Новое сообщение:", normalized);
+        saveMessageToFile(normalized);
+    }, new NewMessage({}));
 };
