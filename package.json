@@ -12,7 +12,8 @@
   "type": "commonjs",
   "dependencies": {
     "dotenv": "^16.4.7",
-    "telegram": "github:gram-js/gramjs"
+    "input": "^1.0.1",
+    "telegram": "^2.26.22"
   },
   "devDependencies": {
     "ts-node": "^10.9.2",
