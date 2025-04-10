@@ -22,16 +22,18 @@ export const handleNewMessage = async (
                 : message.fromId?.toString() ??
                 (message.out ? me.id.toString() : null);
 
-        const normalized = {
+        const normalizedOriginal = {
             messageId: message.id,
             text: message.message,
             fromId,
             chatId,
             chatType,
             date: formattedDate,
+            version: "original",
+            editDate: null, // оригинальное сообщение не имеет даты редактирования
         };
 
-        console.log("📨 Новое сообщение:", normalized);
-        saveMessageToFile(normalized);
+        console.log("📨 Новое сообщение:", normalizedOriginal);
+        saveMessageToFile(normalizedOriginal);
     }, new NewMessage({}));
 };

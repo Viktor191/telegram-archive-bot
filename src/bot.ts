@@ -2,6 +2,7 @@ import { TelegramClient } from "telegram";
 import { StringSession } from "telegram/sessions";
 import { API_ID, API_HASH, STRING_SESSION } from "./config/env";
 import {handleNewMessage} from "./services/handleNewMessage";
+import {handleEditedMessage} from "./services/handleEditedMessage";
 
 
 const stringSession = new StringSession(STRING_SESSION);
@@ -18,4 +19,5 @@ const stringSession = new StringSession(STRING_SESSION);
     await client.getDialogs();
 
     handleNewMessage(client, me);
+    handleEditedMessage(client, me);
 })();
