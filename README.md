@@ -6,16 +6,16 @@
 
 1. **Клонировать репозиторий**
 
-   ```bash
+```bash
 git clone https://github.com/ваш-логин/telegram-archive-bot.git
 cd telegram-archive-bot
    ```
 
 2. **Установить зависимости**
 
-   ```bash
+```bash
 npm install
-   ```
+```
 
 3. **Создать Telegram приложение**
 
@@ -31,17 +31,17 @@ npm install
 
    Создайте файл `.env` в корне проекта и добавьте:
 
-   ```env
+```env
 TG_API_ID=ваш_api_id
 TG_API_HASH=ваш_api_hash
 STRING_SESSION=
-   ```
+```
 
 5. **Получить stringSession (один раз)**
 
-   ```bash
+```bash
 npx ts-node src/auth.ts
-   ```
+```
 
    Вас попросят ввести:
    - Номер телефона в международном формате
@@ -50,15 +50,15 @@ npx ts-node src/auth.ts
 
    После успешной авторизации будет выведена строка `stringSession`. Скопируйте её и вставьте в `.env`:
 
-   ```env
+```env
 STRING_SESSION=вставьте_сюда_значение
-   ```
+```
 
 6. **Запустить бота**
 
-   ```bash
+```bash
 npx ts-node src/bot.ts
-   ```
+```
 
    Бот запустится, подключится к Telegram и начнёт логировать входящие, отредактированные и удалённые сообщения в файл `logs/messages.json`.
 
