@@ -3,6 +3,7 @@ import { StringSession } from "telegram/sessions";
 import { API_ID, API_HASH, STRING_SESSION } from "./config/env";
 import {handleNewMessage} from "./services/handleNewMessage";
 import {handleEditedMessage} from "./services/handleEditedMessage";
+import {handleDeletedMessage} from "./services/handleDeletedMessage";
 
 
 const stringSession = new StringSession(STRING_SESSION);
@@ -20,4 +21,5 @@ const stringSession = new StringSession(STRING_SESSION);
 
     handleNewMessage(client, me);
     handleEditedMessage(client, me);
+    handleDeletedMessage(client);
 })();

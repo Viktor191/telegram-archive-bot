@@ -19,7 +19,7 @@ export const normalizeMessage = (
     me: Api.User
 ): NormalizedMessage => {
     // Вывод значения message.out для отладки
-    console.log(`DEBUG: message.out for messageId ${message.id}:`, message.out);
+    /*console.log(`DEBUG: message.out for messageId ${message.id}:`, message.out);*/
 
     const formattedDate = getFormattedDate(message.date);
     const { chatId, chatType } = getChatInfo(message.peerId);
