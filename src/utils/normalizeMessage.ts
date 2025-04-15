@@ -11,6 +11,7 @@ export type NormalizedMessage = {
     date: string;
     version: "original" | "edited";
     editDate: string | null;
+    removed: boolean;
 };
 
 export const normalizeMessage = (
@@ -48,5 +49,6 @@ export const normalizeMessage = (
             version === "edited" && message.editDate
                 ? getFormattedDate(message.editDate)
                 : null,
+        removed: false,
     };
 };
