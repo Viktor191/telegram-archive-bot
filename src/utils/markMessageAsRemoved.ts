@@ -3,26 +3,27 @@ import path from "path";
 
 const filePath = path.resolve("logs", "messages.json");
 
-// Функция для обновления поля removed для сообщения с определённым messageId
-export const markMessageAsRemoved = (messageId: number): any => {
+// Функция обновляет поле removed для всех сообщений с данным messageId и возвращает массив обновлённых сообщений.
+export const markMessageAsRemoved = (messageId: number): any[] => {
     try {
-        const data = fs.readFileSync(filePath, "utf-8"); // Чтение файла messages.json
+        const data = fs.readFileSync(filePath, "utf-8");
         const messages = JSON.parse(data);
 
-        // Найти сообщение по messageId
-        const message = messages.find((msg: any) => msg.messageId === messageId);
-        if (message) {
-            message.removed = true;
-            console.log(`Сообщение с messageId ${messageId} помечено как удалённое.`);
-            // Записываем обновлённые данные обратно в файл
-            fs.writeFileSync(filePath, JSON.stringify(messages, null, 2));
-            return message; // Возвращаем обновлённое сообщение
-        } else {
-            console.warn(`Сообщение с messageId ${messageId} не найдено.`);
-            return null;
+        const updatedMessages: any[] = [];
+        messages.forEach((msg: any) => {
+            if (msg.messageId === messageId) {
+                msg.removed = true;
+                updatedMessages.push(msg);
+            }
+        });
+
+        fs.writeFileSync(filePath, JSON.stringify(messages, null, 2));
+        if (updatedMessages.length > 0) {
+            console.log(`Сообщения с messageId ${messageId} помечены как удалённые.`);
         }
+        return updatedMessages;
     } catch (error) {
         console.error("Ошибка при обновлении файла сообщений:", error);
-        return null;
+        return [];
     }
 };
